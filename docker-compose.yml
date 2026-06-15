@@ -1,20 +1,29 @@
 services:
   web_institucional:
+    # 1. Le asignamos el nombre de la imagen en tu registro de GitHub.
+    # Por defecto, si la imagen no existe localmente, Docker la descargará de GHCR.
+    image: ghcr.io/${GITHUB_USER:-tu-usuario-github}/johan_kepler:${IMAGE_TAG:-latest}
+    
+    # El bloque build se queda por si necesitas forzar una compilación manual local
     build:
       context: .
       dockerfile: Dockerfile
+      
     container_name: kepler_institutional_demo
-    # 01_manifiesto_core: Control de recursos (Límites estrictos)
+    
+    # 01_manifiesto_core: Control de recursos (Límites estrictos ideales para LXC/Proxmox)
     deploy:
       resources:
         limits:
           cpus: '0.1'
           memory: 50M
-    # Solución al hardcoding de IP usando fallbacks seguros:
+          
+    # Solución al hardcoding de IP usando fallbacks seguros
     ports:
       - "${HOST_IP:-127.0.0.1}:${HOST_PORT:-8080}:80"
-    #restart: unless-stopped
+      
     restart: always
+    
     # Red aislada para seguridad
     networks:
       - kepler-net
