@@ -1,0 +1,12 @@
+{
+  "name": "Johan Kepler Dev Environment",
+  "image": "oven/bun:1.1-alpine",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "astro-build.astro-vscode"
+      ]
+    }
+  },
+  "postCreateCommand": "bun install"
+}
