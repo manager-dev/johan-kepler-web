@@ -11,7 +11,7 @@ COPY index.html /usr/share/nginx/html/index.html
 # 2. Copiamos la carpeta de activos (assets) completa
 # Al usar assets/ (con slash) Docker copia el CONTENIDO de tu carpeta local 
 # dentro de la carpeta /assets/ del contenedor.
-COPY assets/ /usr/share/nginx/html/assets/
+COPY .public/ /usr/share/nginx/html/assets/
 
 # 3. SEGURIDAD Y CONTROL: Ajuste de propietario y permisos
 # En sistemas Linux/Docker, es vital que el usuario que corre el servicio (nginx)
