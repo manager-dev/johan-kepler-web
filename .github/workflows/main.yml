@@ -1,53 +1,31 @@
-name: CI/CD - Colegio Web
+name: CI/CD - Colegio Johan Kepler
 
 # 1. ¿Cuándo se va a ejecutar este flujo?
 on:
   push:
-    branches:
-      - main     # Se dispara cuando actualizas producción
-      - develop  # Se dispara cuando actualizas pruebas (Staging)
-    tags:
-      - 'v*'     # Se dispara cuando creas un tag de versión (ej: v0.1.0)
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
 
 jobs:
-  build-and-push:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write  # Permiso obligatorio para poder escribir en GHCR
 
     steps:
-      # Paso 1: Clonar el código del repositorio en el servidor de GitHub
-      - name: Checkout Code
+      # Paso 1: Descargar el código del repositorio en la máquina virtual de GitHub
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Paso 2: Iniciar sesión en el Registro de GitHub (GHCR)
-      - name: Log in to GHCR
-        uses: docker/login-action@v3
+      # Paso 2: Configurar Bun de forma nativa en el flujo de automatización
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          bun-version: latest
 
-      # Paso 3: Configurar las etiquetas (Tags) de Docker automáticamente
-      - name: Extract Docker metadata
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ghcr.io/${{ github.repository }}
-          tags: |
-            # Si se sube a main, la etiqueta será :latest
-            type=ref,event=branch,branch=main,prefix=,suffix=,pattern=latest
-            # Si se sube a develop, la etiqueta será :develop
-            type=ref,event=branch,branch=develop
-            # Si se crea un tag de Git (v0.1.0), la etiqueta de Docker será :v0.1.0
-            type=semver,pattern={{version}}
+      # Paso 3: Instalar las dependencias de forma ultra-rápida usando tu bun.lockb
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
 
-      # Paso 4: Construir la imagen y subirla a GHCR
-      - name: Build and Push Docker Image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+      # Paso 4: Validar que el código de Astro compile correctamente sin errores
+      - name: Build project
+        run: bun run build
