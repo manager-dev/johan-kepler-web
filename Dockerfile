@@ -4,7 +4,7 @@ FROM oven/bun:1.1-alpine AS builder
 WORKDIR /app
 
 # Copiamos los archivos de configuración y dependencias primero para aprovechar la caché
-COPY package.json bun.lockb ./
+COPY package.json bun.lock ./
 
 # Instalamos las dependencias de forma limpia y exacta basándonos en tu lockfile
 RUN bun install --frozen-lockfile
