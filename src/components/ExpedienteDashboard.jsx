@@ -1,18 +1,15 @@
 import { createSignal, createResource, Show } from 'solid-js';
 
-// Servicio que conecta con la ruta real y el método POST de tu backend de Staging
+// Servicio que conecta con la ruta GET real de tu FastAPI en Staging
 const fetchExpediente = async (id) => {
     if (!id) return null;
 
-    // Ajustado a /api/v1/estudiantes según la ruta de tu FastAPI
-    const response = await fetch(`https://api-desarrollo-johankepler.portalweb.cc/api/v1/estudiantes`, {
-        method: 'POST',
+    // Consumimos el endpoint con la estructura exacta: /api/v1/estudiantes/{id}
+    const response = await fetch(`https://api-desarrollo-johankepler.portalweb.cc/api/v1/estudiantes/${id}`, {
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-        },
-        // Enviamos el ID del estudiante en el cuerpo del POST si tu API lo requiere así,
-        // o puedes concatenarlo si es un parámetro de ruta (ej: /estudiantes/${id})
-        body: JSON.stringify({ id: parseInt(id) })
+        }
     });
 
     if (!response.ok) {
@@ -41,7 +38,7 @@ export default function ExpedienteDashboard() {
 
     return (
         <div class="space-y-8">
-            {/* Buscador de Expedientes */}
+            {/* Buscador de Expedientes con Estilo Institucional */}
             <form onSubmit={handleSearch} class="bg-white p-6 rounded-lg border-b-4 border-kepler-gold shadow-md max-w-xl mx-auto flex gap-4">
                 <div class="flex-1">
                     <label class="block text-xs font-black uppercase text-slate-500 mb-2 tracking-wider">ID o NIE del Estudiante</label>
@@ -77,7 +74,7 @@ export default function ExpedienteDashboard() {
             <Show when={expediente()}>
                 <div class="bg-white rounded-lg border-l-8 border-kepler-red shadow-xl max-w-3xl mx-auto overflow-hidden text-left">
 
-                    {/* Encabezado de la Tarjeta */}
+                    {/* Encabezado de la Tarjeta de Registro */}
                     <div class="bg-black text-white p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b-4 border-kepler-gold">
                         <div>
                             <span class="text-xs font-black text-kepler-gold uppercase tracking-widest block mb-1">Expediente Académico Oficial</span>
@@ -90,16 +87,18 @@ export default function ExpedienteDashboard() {
                         </div>
                     </div>
 
-                    {/* Bloques de Datos Técnicos */}
+                    {/* Bloques de Datos Técnicos que mapean tu EstudianteSchema */}
                     <div class="p-8 grid md:grid-cols-2 gap-8 font-medium text-slate-700">
                         <div class="space-y-4">
                             <div>
-                                <span class="block text-xs font-black uppercase text-slate-400">Grado e Institución</span>
-                                <span class="text-lg font-bold text-black">{expediente().grado?.nombre_grado || 'No asignado'}</span>
+                                <span class="block text-xs font-black uppercase text-slate-400">Identificador de Grado</span>
+                                <span class="text-lg font-bold text-black">Código de Grado: {expediente().id_grado}</span>
                             </div>
                             <div>
-                                <span class="block text-xs font-black uppercase text-slate-400">Año de Curso</span>
-                                <span class="text-base text-slate-900 font-bold">{expediente().grado?.año_lectivo || '2026'}</span>
+                                <span class="block text-xs font-black uppercase text-slate-400">Género registrado</span>
+                                <span class="text-base text-slate-900 font-bold">
+                  {expediente().genero === 'M' ? 'Masculino' : 'Femenino'}
+                </span>
                             </div>
                         </div>
 
