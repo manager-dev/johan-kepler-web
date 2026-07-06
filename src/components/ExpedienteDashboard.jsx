@@ -109,4 +109,16 @@ export default function ExpedienteDashboard() {
                                 <span class="text-base text-slate-900 font-bold">{expediente().fecha_nacimiento}</span>
                             </div>
                             <div>
-                                <span class="block text-xs font-black uppercase text-slate-400">
+                                <span class="block text-xs font-black uppercase text-slate-400">Condición de Matrícula</span>
+                                <span class={`inline-block mt-1 px-3 py-1 rounded text-xs font-black uppercase tracking-wider ${expediente().estado === 'activo' ? 'bg-green-100 text-green-800' : 'bg-slate-100 text-slate-600'}`}>
+                  ● {expediente().estado}
+                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </Show>
+        </div>
+    );
+}
