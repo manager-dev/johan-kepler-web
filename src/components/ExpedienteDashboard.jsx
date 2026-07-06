@@ -1,12 +1,24 @@
 import { createSignal, createResource, Show } from 'solid-js';
 
-// Servicio de conexión con el backend de desarrollo
+// Servicio que conecta con la ruta GET real de tu FastAPI en Staging
 const fetchExpediente = async (id) => {
     if (!id) return null;
-    const response = await fetch(`https://api-desarrollo-johankepler.portalweb.cc/api/alumnos/${id}`);
+
+    // Consumimos el endpoint con la estructura exacta: /api/v1/estudiantes/{id}
+    const response = await fetch(`https://api-desarrollo-johankepler.portalweb.cc/api/v1/estudiantes/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
     if (!response.ok) {
-        throw new Error('No se encontró el expediente del alumno o el sistema de base de datos no responde.');
+        if (response.status === 404) {
+            throw new Error('No se encontró el expediente del estudiante en el registro académico.');
+        }
+        throw new Error('Error al conectar con la base de datos o bloqueo de seguridad (CORS).');
     }
+
     return response.json();
 };
 
@@ -43,7 +55,7 @@ export default function ExpedienteDashboard() {
                 </button>
             </form>
 
-            {/* Controladores de Estado (Loading / Error / Success) */}
+            {/* Controladores de Estado (Loading / Error) */}
             <Show when={expediente.loading}>
                 <div class="text-center py-12">
                     <div class="animate-spin inline-block w-8 h-8 border-4 border-kepler-red border-t-transparent rounded-full mb-4"></div>
@@ -75,16 +87,18 @@ export default function ExpedienteDashboard() {
                         </div>
                     </div>
 
-                    {/* Bloques de Datos Técnicos */}
+                    {/* Bloques de Datos Técnicos que mapean tu EstudianteSchema */}
                     <div class="p-8 grid md:grid-cols-2 gap-8 font-medium text-slate-700">
                         <div class="space-y-4">
                             <div>
-                                <span class="block text-xs font-black uppercase text-slate-400">Grado e Institución</span>
-                                <span class="text-lg font-bold text-black">{expediente().grado.nombre_grado}</span>
+                                <span class="block text-xs font-black uppercase text-slate-400">Identificador de Grado</span>
+                                <span class="text-lg font-bold text-black">Código de Grado: {expediente().id_grado}</span>
                             </div>
                             <div>
-                                <span class="block text-xs font-black uppercase text-slate-400">Año de Curso</span>
-                                <span class="text-base text-slate-900 font-bold">{expediente().grado.año_lectivo}</span>
+                                <span class="block text-xs font-black uppercase text-slate-400">Género registrado</span>
+                                <span class="text-base text-slate-900 font-bold">
+                  {expediente().genero === 'M' ? 'Masculino' : 'Femenino'}
+                </span>
                             </div>
                         </div>
 
