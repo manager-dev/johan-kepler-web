@@ -3,11 +3,8 @@
         <div class="flex justify-between h-24 items-center">
             <div class="flex items-center gap-4">
 
-                <!-- 1. ESPACIO PARA EL LOGO (NAVBAR) -->
-                <!-- Instrucción: Reemplaza el div logo-placeholder por una etiqueta <img> cuando tengas el archivo -->
                 <div class="logo-placeholder w-14 h-14 md:w-16 md:h-16">
                     <img src="assets/logo.png" alt="Logo Kepler" class="w-full h-full object-contain">
-                    <!-- <span class="text-[8px] font-black uppercase text-center">Logo<br>Kepler</span> -->
                 </div>
 
                 <div class="flex flex-col">
@@ -20,20 +17,24 @@
                 <a href="#modelo" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Modelo Educativo</a>
                 <a href="#niveles" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Niveles</a>
                 <a href="#contacto" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Admisiones</a>
-                <button class="border-2 border-kepler-red text-kepler-red px-4 py-2 rounded font-black uppercase text-xs hover:bg-red-50 transition-colors">Acceso SIRAI</button>
+
+                <a href="/expediente" class="border-2 border-kepler-red text-kepler-red px-4 py-2 rounded font-black uppercase text-xs hover:bg-red-50 transition-colors block text-center">
+                    Expediente Kepler
+                </a>
             </div>
 
-            <!-- Botón Menú Móvil -->
             <button class="lg:hidden text-black p-2 bg-slate-100 rounded" onclick="toggleMenu()">
                 <svg id="menu-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </div>
     </div>
 
-    <!-- Menú Móvil Desplegable -->
     <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 p-6 space-y-4 shadow-lg">
         <a href="#modelo" class="block text-black font-black uppercase text-sm" onclick="toggleMenu()">Modelo Educativo</a>
         <a href="#niveles" class="block text-black font-black uppercase text-sm" onclick="toggleMenu()">Niveles</a>
-        <button class="w-full bg-kepler-red text-white py-3 rounded font-black uppercase">Acceso SIRAI</button>
+
+        <a href="/expediente" class="w-full bg-kepler-red text-white py-3 rounded font-black uppercase block text-center">
+            Expediente Kepler
+        </a>
     </div>
 </nav>
