@@ -29,6 +29,6 @@ import ExpedienteDashboard from '../components/ExpedienteDashboard.jsx';
         </div>
 
         {/* Inyección del Dashboard con hidratación del lado del cliente */}
-        <ExpedienteDashboard client:load />
+        <ExpedienteDashboard client:only="solid-js" />
     </main>
 </Layout>
