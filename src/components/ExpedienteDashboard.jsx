@@ -1,12 +1,27 @@
 import { createSignal, createResource, Show } from 'solid-js';
 
-// Servicio de conexión con el backend de desarrollo
+// Servicio que conecta con la ruta real y el método POST de tu backend de Staging
 const fetchExpediente = async (id) => {
     if (!id) return null;
-    const response = await fetch(`https://api-desarrollo-johankepler.portalweb.cc/api/alumnos/${id}`);
+
+    // Ajustado a /api/v1/estudiantes según la ruta de tu FastAPI
+    const response = await fetch(`https://api-desarrollo-johankepler.portalweb.cc/api/v1/estudiantes`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        // Enviamos el ID del estudiante en el cuerpo del POST si tu API lo requiere así,
+        // o puedes concatenarlo si es un parámetro de ruta (ej: /estudiantes/${id})
+        body: JSON.stringify({ id: parseInt(id) })
+    });
+
     if (!response.ok) {
-        throw new Error('No se encontró el expediente del alumno o el sistema de base de datos no responde.');
+        if (response.status === 404) {
+            throw new Error('No se encontró el expediente del estudiante en el registro académico.');
+        }
+        throw new Error('Error al conectar con la base de datos o bloqueo de seguridad (CORS).');
     }
+
     return response.json();
 };
 
@@ -26,7 +41,7 @@ export default function ExpedienteDashboard() {
 
     return (
         <div class="space-y-8">
-            {/* Buscador de Expedientes con Estilo Institucional */}
+            {/* Buscador de Expedientes */}
             <form onSubmit={handleSearch} class="bg-white p-6 rounded-lg border-b-4 border-kepler-gold shadow-md max-w-xl mx-auto flex gap-4">
                 <div class="flex-1">
                     <label class="block text-xs font-black uppercase text-slate-500 mb-2 tracking-wider">ID o NIE del Estudiante</label>
@@ -43,7 +58,7 @@ export default function ExpedienteDashboard() {
                 </button>
             </form>
 
-            {/* Controladores de Estado (Loading / Error / Success) */}
+            {/* Controladores de Estado (Loading / Error) */}
             <Show when={expediente.loading}>
                 <div class="text-center py-12">
                     <div class="animate-spin inline-block w-8 h-8 border-4 border-kepler-red border-t-transparent rounded-full mb-4"></div>
@@ -62,7 +77,7 @@ export default function ExpedienteDashboard() {
             <Show when={expediente()}>
                 <div class="bg-white rounded-lg border-l-8 border-kepler-red shadow-xl max-w-3xl mx-auto overflow-hidden text-left">
 
-                    {/* Encabezado de la Tarjeta de Registro */}
+                    {/* Encabezado de la Tarjeta */}
                     <div class="bg-black text-white p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b-4 border-kepler-gold">
                         <div>
                             <span class="text-xs font-black text-kepler-gold uppercase tracking-widest block mb-1">Expediente Académico Oficial</span>
@@ -80,11 +95,11 @@ export default function ExpedienteDashboard() {
                         <div class="space-y-4">
                             <div>
                                 <span class="block text-xs font-black uppercase text-slate-400">Grado e Institución</span>
-                                <span class="text-lg font-bold text-black">{expediente().grado.nombre_grado}</span>
+                                <span class="text-lg font-bold text-black">{expediente().grado?.nombre_grado || 'No asignado'}</span>
                             </div>
                             <div>
                                 <span class="block text-xs font-black uppercase text-slate-400">Año de Curso</span>
-                                <span class="text-base text-slate-900 font-bold">{expediente().grado.año_lectivo}</span>
+                                <span class="text-base text-slate-900 font-bold">{expediente().grado?.año_lectivo || '2026'}</span>
                             </div>
                         </div>
 
@@ -94,16 +109,4 @@ export default function ExpedienteDashboard() {
                                 <span class="text-base text-slate-900 font-bold">{expediente().fecha_nacimiento}</span>
                             </div>
                             <div>
-                                <span class="block text-xs font-black uppercase text-slate-400">Condición de Matrícula</span>
-                                <span class={`inline-block mt-1 px-3 py-1 rounded text-xs font-black uppercase tracking-wider ${expediente().estado === 'activo' ? 'bg-green-100 text-green-800' : 'bg-slate-100 text-slate-600'}`}>
-                  ● {expediente().estado}
-                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </Show>
-        </div>
-    );
-}
+                                <span class="block text-xs font-black uppercase text-slate-400">
