@@ -24,9 +24,7 @@ jobs:
           bun-version: latest
 
       - name: Install dependencies
-        run: |
-          rm -rf node_modules
-          bun install --force
+        run: bun install
 
       - name: Build project
         run: bun run build
