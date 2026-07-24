@@ -4,7 +4,6 @@ import { createSignal, createResource, Show } from 'solid-js';
 const fetchExpediente = async (id) => {
     if (!id) return null;
 
-    // Consumimos el endpoint con la estructura exacta: /api/v1/estudiantes/{id}
     const response = await fetch(`https://api-desarrollo-johankepler.portalweb.cc/api/v1/estudiantes/${id}`, {
         method: 'GET',
         headers: {
@@ -31,8 +30,9 @@ export default function ExpedienteDashboard() {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        if (alumnoId().trim() !== '') {
-            setSearchId(alumnoId());
+        const trimmed = alumnoId().trim();
+        if (trimmed !== '') {
+            setSearchId(trimmed);
         }
     };
 
@@ -70,53 +70,55 @@ export default function ExpedienteDashboard() {
                 </div>
             </Show>
 
-            {/* Renderizado de Datos del Expediente */}
+            {/* Renderizado de Datos del Expediente mediante callback para mayor seguridad reactiva */}
             <Show when={expediente()}>
-                <div class="bg-white rounded-lg border-l-8 border-kepler-red shadow-xl max-w-3xl mx-auto overflow-hidden text-left">
+                {(item) => (
+                    <div class="bg-white rounded-lg border-l-8 border-kepler-red shadow-xl max-w-3xl mx-auto overflow-hidden text-left">
 
-                    {/* Encabezado de la Tarjeta de Registro */}
-                    <div class="bg-black text-white p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b-4 border-kepler-gold">
-                        <div>
-                            <span class="text-xs font-black text-kepler-gold uppercase tracking-widest block mb-1">Expediente Académico Oficial</span>
-                            <h2 class="text-3xl font-black uppercase tracking-tighter leading-none">
-                                {expediente().apellido}, {expediente().nombre}
-                            </h2>
+                        {/* Encabezado de la Tarjeta de Registro */}
+                        <div class="bg-black text-white p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b-4 border-kepler-gold">
+                            <div>
+                                <span class="text-xs font-black text-kepler-gold uppercase tracking-widest block mb-1">Expediente Académico Oficial</span>
+                                <h2 class="text-3xl font-black uppercase tracking-tighter leading-none">
+                                    {item().apellido}, {item().nombre}
+                                </h2>
+                            </div>
+                            <div class="bg-kepler-red px-4 py-2 rounded text-xs font-black uppercase tracking-wider">
+                                NIE: {item().nie}
+                            </div>
                         </div>
-                        <div class="bg-kepler-red px-4 py-2 rounded text-xs font-black uppercase tracking-wider">
-                            NIE: {expediente().nie}
+
+                        {/* Bloques de Datos Técnicos que mapean tu EstudianteSchema */}
+                        <div class="p-8 grid md:grid-cols-2 gap-8 font-medium text-slate-700">
+                            <div class="space-y-4">
+                                <div>
+                                    <span class="block text-xs font-black uppercase text-slate-400">Identificador de Grado</span>
+                                    <span class="text-lg font-bold text-black">Código de Grado: {item().id_grado}</span>
+                                </div>
+                                <div>
+                                    <span class="block text-xs font-black uppercase text-slate-400">Género registrado</span>
+                                    <span class="text-base text-slate-900 font-bold">
+                                        {item().genero === 'M' ? 'Masculino' : 'Femenino'}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <span class="block text-xs font-black uppercase text-slate-400">Fecha de Nacimiento</span>
+                                    <span class="text-base text-slate-900 font-bold">{item().fecha_nacimiento}</span>
+                                </div>
+                                <div>
+                                    <span class="block text-xs font-black uppercase text-slate-400">Condición de Matrícula</span>
+                                    <span class={`inline-block mt-1 px-3 py-1 rounded text-xs font-black uppercase tracking-wider ${item().estado === 'activo' ? 'bg-green-100 text-green-800' : 'bg-slate-100 text-slate-600'}`}>
+                                        ● {item().estado}
+                                    </span>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
-
-                    {/* Bloques de Datos Técnicos que mapean tu EstudianteSchema */}
-                    <div class="p-8 grid md:grid-cols-2 gap-8 font-medium text-slate-700">
-                        <div class="space-y-4">
-                            <div>
-                                <span class="block text-xs font-black uppercase text-slate-400">Identificador de Grado</span>
-                                <span class="text-lg font-bold text-black">Código de Grado: {expediente().id_grado}</span>
-                            </div>
-                            <div>
-                                <span class="block text-xs font-black uppercase text-slate-400">Género registrado</span>
-                                <span class="text-base text-slate-900 font-bold">
-                  {expediente().genero === 'M' ? 'Masculino' : 'Femenino'}
-                </span>
-                            </div>
-                        </div>
-
-                        <div class="space-y-4">
-                            <div>
-                                <span class="block text-xs font-black uppercase text-slate-400">Fecha de Nacimiento</span>
-                                <span class="text-base text-slate-900 font-bold">{expediente().fecha_nacimiento}</span>
-                            </div>
-                            <div>
-                                <span class="block text-xs font-black uppercase text-slate-400">Condición de Matrícula</span>
-                                <span class={`inline-block mt-1 px-3 py-1 rounded text-xs font-black uppercase tracking-wider ${expediente().estado === 'activo' ? 'bg-green-100 text-green-800' : 'bg-slate-100 text-slate-600'}`}>
-                  ● {expediente().estado}
-                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                )}
             </Show>
         </div>
     );
