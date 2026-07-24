@@ -4,7 +4,8 @@ import { createSignal, createResource, Show } from 'solid-js';
 const fetchExpediente = async (id) => {
     if (!id) return null;
 
-    const response = await fetch(`https://api-desarrollo-johankepler.portalweb.cc/api/v1/estudiantes/${id}`, {
+    // ✅ Dominio unificado corregido
+    const response = await fetch(`https://desarrollo-johankepler.portalweb.cc/api/v1/estudiantes/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -15,7 +16,7 @@ const fetchExpediente = async (id) => {
         if (response.status === 404) {
             throw new Error('No se encontró el expediente del estudiante en el registro académico.');
         }
-        throw new Error('Error al conectar con la base de datos o bloqueo de seguridad (CORS).');
+        throw new Error('Error al conectar con la base de datos o bloqueo de seguridad.');
     }
 
     return response.json();
