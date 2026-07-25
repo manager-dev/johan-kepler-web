@@ -1,21 +1,33 @@
-# 01_manifiesto_core: Uso de versiones específicas para inmutabilidad
-FROM nginx:1.25-alpine
+# === ETAPA 1: Compilación del proyecto (Builder) ===
+FROM oven/bun:1.1-alpine AS builder
 
-# Metadatos del proyecto
+WORKDIR /app
+
+# Copiamos los archivos de configuración y dependencias primero para aprovechar la caché
+COPY package.json bun.lock ./
+
+# Instalamos las dependencias permitiendo que Bun resuelva nativamente con el nuevo formato bun.lock
+RUN bun install
+
+# CORREGIDO: Copiamos todo el resto del proyecto manteniendo la sintaxis en una sola línea
+COPY . .
+
+# Compilamos el sitio web estático con Astro (esto genera la carpeta /app/dist)
+RUN bun run build
+
+
+# === ETAPA 2: Servidor de producción inmutable (Runtime) ===
+FROM nginx:1.25-alpine AS runtime
+
+# Metadatos del proyecto (Manifiesto Core)
 LABEL maintainer="Arquitectura Johan Kepler"
 LABEL project="Demo Institucional Assets"
 
-# 1. Copiamos el archivo principal (index.html)
-COPY index.html /usr/share/nginx/html/index.html
+# Copiamos el resultado de la compilación de Astro de la etapa anterior al directorio de Nginx
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-# 2. Copiamos la carpeta de activos (assets) completa
-# Al usar assets/ (con slash) Docker copia el CONTENIDO de tu carpeta local 
-# dentro de la carpeta /assets/ del contenedor.
-COPY assets/ /usr/share/nginx/html/assets/
-
-# 3. SEGURIDAD Y CONTROL: Ajuste de propietario y permisos
-# En sistemas Linux/Docker, es vital que el usuario que corre el servicio (nginx)
-# sea el dueño de los archivos para evitar errores 403 o fallos de lectura.
+# SEGURIDAD Y CONTROL: Ajuste de propietario y permisos
+# Vital en sistemas Linux para evitar errores 403 o fallos de lectura del demonio Nginx
 RUN chown -R nginx:nginx /usr/share/nginx/html && \
     chmod -R 755 /usr/share/nginx/html
 

@@ -1,0 +1,42 @@
+---
+// src/layouts/Layout.astro
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+
+    <!-- Importación de Tipografía Noto Sans (Optimizada en Astro) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style is:global>
+        /* Mantenemos tus estilos fluidos globales */
+        html {
+            scroll-behavior: smooth;
+        }
+        .logo-placeholder {
+            border: 2px dashed #cbd5e1;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-kepler-aqua font-sans text-slate-900 antialiased">
+<!-- El <slot /> es la ranura mágica donde Astro inyectará el contenido de cada página -->
+<slot />
+</body>
+</html>

@@ -1,0 +1,56 @@
+---
+// src/components/Navbar.astro
+---
+<nav class="fixed w-full bg-white z-50 border-b-8 border-kepler-gold shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-24 items-center">
+            <!-- Logo y Nombre -->
+            <a href="/" class="flex items-center gap-4">
+                <div class="w-14 h-14 md:w-16 md:h-16 border-2 border-slate-200 rounded-full flex items-center justify-center bg-white overflow-hidden">
+                    <img src="/assets/logo.png" alt="Logo Kepler" class="w-full h-full object-contain" />
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-black text-black leading-none uppercase tracking-tighter">Colegio</span>
+                    <span class="text-xl font-bold text-kepler-red leading-none tracking-tight">Johan Kepler</span>
+                </div>
+            </a>
+
+            <!-- Menú Escritorio -->
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="/#modelo" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Modelo Educativo</a>
+                <a href="/#niveles" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Niveles</a>
+                <a href="/#contacto" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Admisiones</a>
+                <a href="/expediente" class="border-2 border-kepler-red text-kepler-red px-4 py-2 rounded font-black uppercase text-xs hover:bg-red-50 transition-colors">Expediente</a>
+            </div>
+
+            <!-- Botón Menú Móvil -->
+            <button id="menu-btn" class="lg:hidden text-black p-2 bg-slate-100 rounded" aria-label="Abrir menú">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Menú Móvil Desplegable -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 p-6 space-y-4 shadow-lg">
+        <a href="/#modelo" class="block text-black font-black uppercase text-sm mobile-link">Modelo Educativo</a>
+        <a href="/#niveles" class="block text-black font-black uppercase text-sm mobile-link">Niveles</a>
+        <a href="/#contacto" class="block text-black font-black uppercase text-sm mobile-link">Admisiones</a>
+        <a href="/expediente" class="block w-full text-center bg-kepler-red text-white py-3 rounded font-black uppercase">Expediente</a>
+    </div>
+</nav>
+
+<script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    menuBtn?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('hidden');
+    });
+
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu?.classList.add('hidden');
+        });
+    });
+</script>
