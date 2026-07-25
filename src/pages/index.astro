@@ -1,59 +1,33 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
+// src/pages/index.astro
 import Hero from '../components/Hero.astro';
-import Schedules from '../components/Schedules.astro';
-import Curriculum from '../components/Curriculum.astro';
 import Footer from '../components/Footer.astro';
+
+// Reemplazar con las URLs finales cuando las tengas
+const OFFICIAL_FACEBOOK = "https://facebook.com";
+const OFFICIAL_YOUTUBE = "https://youtube.com";
 ---
 
-<Layout title="Colegio Johan Kepler - Soyapango">
-    <Navbar />
-    <main>
-        <Hero />
-        <Schedules />
-        <Curriculum />
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Colegio Cristiano Johan Kepler</title>
+</head>
+<body class="bg-slate-950 min-h-screen flex flex-col justify-between text-slate-100 font-sans">
 
-        <!-- SECCIÓN NIVELES EDUCATIVOS (id="niveles") -->
-        <section id="niveles" class="py-24 bg-slate-50 px-4 border-t border-slate-200">
-            <div class="max-w-7xl mx-auto text-center">
-                <h2 class="text-4xl md:text-5xl font-black text-black uppercase tracking-tighter">Niveles Educativos</h2>
-                <div class="w-24 h-2 bg-kepler-gold mx-auto mb-12"></div>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
+    <!-- Banner Principal -->
+    <Hero facebookUrl={OFFICIAL_FACEBOOK} />
 
-                <div class="grid md:grid-cols-3 gap-8 text-left">
-                    <!-- Parvularia -->
-                    <div class="bg-white p-8 rounded-lg shadow-md border-t-8 border-kepler-red">
-                        <span class="text-xs font-black text-kepler-red uppercase tracking-widest block mb-2">Educación Inicial</span>
-                        <h3 class="text-2xl font-black uppercase mb-4">Parvularia</h3>
-                        <p class="text-slate-600 font-medium text-sm leading-relaxed mb-4">
-                            Desarrollo integral, motricidad y primeras habilidades de lectoescritura en un ambiente seguro.
-                        </p>
-                        <span class="inline-block bg-slate-100 text-slate-800 text-xs font-bold px-3 py-1 rounded">K4 • K5 • K6</span>
-                    </div>
+    <!-- Resto del contenido -->
+</main>
 
-                    <!-- Educación Básica -->
-                    <div class="bg-white p-8 rounded-lg shadow-md border-t-8 border-kepler-gold">
-                        <span class="text-xs font-black text-kepler-gold uppercase tracking-widest block mb-2">I, II y III Ciclo</span>
-                        <h3 class="text-2xl font-black uppercase mb-4">Educación Básica</h3>
-                        <p class="text-slate-600 font-medium text-sm leading-relaxed mb-4">
-                            Formación sólida con programas ESMATE, ESLENGUA y laboratorio tecnológico.
-                        </p>
-                        <span class="inline-block bg-slate-100 text-slate-800 text-xs font-bold px-3 py-1 rounded">1° a 9° Grado</span>
-                    </div>
-
-                    <!-- Bachillerato -->
-                    <div class="bg-white p-8 rounded-lg shadow-md border-t-8 border-black">
-                        <span class="text-xs font-black text-black uppercase tracking-widest block mb-2">Educación Media</span>
-                        <h3 class="text-2xl font-black uppercase mb-4">Bachillerato</h3>
-                        <p class="text-slate-600 font-medium text-sm leading-relaxed mb-4">
-                            Preparación académica de alto nivel enfocada en el examen AVANZO e ingreso universitario.
-                        </p>
-                        <span class="inline-block bg-slate-100 text-slate-800 text-xs font-bold px-3 py-1 rounded">General (2 Años)</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <Footer />
-</Layout>
+<!-- Footer Institucional -->
+<Footer
+        facebookUrl={OFFICIAL_FACEBOOK}
+        youtubeUrl={OFFICIAL_YOUTUBE}
+/>
+</body>
+</html>
