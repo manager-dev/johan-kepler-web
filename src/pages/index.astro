@@ -3,9 +3,8 @@
 import Hero from '../components/Hero.astro';
 import Footer from '../components/Footer.astro';
 
-// Reemplazar con las URLs finales cuando las tengas
-const OFFICIAL_FACEBOOK = "https://facebook.com";
-const OFFICIAL_YOUTUBE = "https://youtube.com";
+// Enlace Oficial de Facebook del Colegio
+const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=wwXIfr";
 ---
 
 <html lang="es">
@@ -18,16 +17,11 @@ const OFFICIAL_YOUTUBE = "https://youtube.com";
 <body class="bg-slate-950 min-h-screen flex flex-col justify-between text-slate-100 font-sans">
 
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
-    <!-- Banner Principal -->
+    <!-- Banner Principal con Enlace Oficial -->
     <Hero facebookUrl={OFFICIAL_FACEBOOK} />
-
-    <!-- Resto del contenido -->
 </main>
 
-<!-- Footer Institucional -->
-<Footer
-        facebookUrl={OFFICIAL_FACEBOOK}
-        youtubeUrl={OFFICIAL_YOUTUBE}
-/>
+<!-- Footer Institucional con Enlace Oficial -->
+<Footer facebookUrl={OFFICIAL_FACEBOOK} />
 </body>
 </html>
