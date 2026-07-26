@@ -1,9 +1,9 @@
 ---
 // src/pages/index.astro
-import Hero from '../components/Hero.astro';
+import SocialCard from '../components/SocialCard.astro';
 import Footer from '../components/Footer.astro';
 
-// Enlace Oficial de Facebook del Colegio
+// URL Oficial de Facebook del Colegio
 const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=wwXIfr";
 ---
 
@@ -16,12 +16,44 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
 </head>
 <body class="bg-slate-950 min-h-screen flex flex-col justify-between text-slate-100 font-sans">
 
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
-    <!-- Banner Principal con Enlace Oficial -->
-    <Hero facebookUrl={OFFICIAL_FACEBOOK} />
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow py-8 space-y-12">
+
+    <!-- 1. Encabezado e Identidad Institucional -->
+    <header class="py-8 text-center max-w-3xl mx-auto space-y-4">
+        <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+            Colegio Cristiano Johan Kepler
+        </h1>
+        <p class="text-lg text-slate-300">
+            Educación integral basada en excelencia académica, ciencia y valores bíblicos.
+        </p>
+    </header>
+
+    <!-- 2. Consulta de Expediente Académico -->
+    <section class="max-w-xl mx-auto rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl">
+        <h2 class="text-xl font-bold text-white mb-2 text-center">Consulta de Expediente</h2>
+        <p class="text-xs text-slate-400 text-center mb-6">Ingresa el código o número de expediente del estudiante</p>
+
+        <form class="flex gap-3" onsubmit="event.preventDefault();">
+            <input
+                    type="text"
+                    placeholder="Ejemplo: 2"
+                    class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+            />
+            <button
+                    type="submit"
+                    class="bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition-colors shadow-lg shadow-blue-600/20"
+            >
+                Buscar
+            </button>
+        </form>
+    </section>
+
+    <!-- 3. Tarjeta de Comunidad Digital (Facebook) al final del contenido principal -->
+    <SocialCard facebookUrl={OFFICIAL_FACEBOOK} />
+
 </main>
 
-<!-- Footer Institucional con Enlace Oficial -->
+<!-- 4. Footer Institucional -->
 <Footer facebookUrl={OFFICIAL_FACEBOOK} />
 </body>
 </html>
