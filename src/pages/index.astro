@@ -1,6 +1,11 @@
 ---
 // src/pages/index.astro
+import { Image } from 'astro:assets';
 import SocialCard from '../components/SocialCard.astro';
+
+// Importación directa de imágenes desde public/assets/
+import logoImg from '../../public/assets/logo.png';
+import fachadaImg from '../../public/assets/fachada.jpg';
 
 // URL Oficial de Facebook del Colegio
 const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=wwXIfr";
@@ -20,10 +25,11 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
 <nav class="fixed w-full bg-white z-50 border-b-8 border-kepler-gold shadow-xl">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-24 items-center">
-            <!-- Logo y Nombre -->
+
+            <!-- Logo e Identidad -->
             <a href="/" class="flex items-center gap-4">
                 <div class="w-14 h-14 md:w-16 md:h-16 border-2 border-slate-200 rounded-full flex items-center justify-center bg-white overflow-hidden">
-                    <img src="/images/logo.png" alt="Logo Kepler" class="w-full h-full object-contain" />
+                    <Image src={logoImg} alt="Logo Colegio Johan Kepler" class="w-full h-full object-contain" />
                 </div>
                 <div class="flex flex-col">
                     <span class="text-2xl font-black text-black leading-none uppercase tracking-tighter">Colegio</span>
@@ -58,11 +64,13 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
 <main>
     <!-- SECCIÓN HERO -->
     <section class="pt-32 pb-20 px-4 bg-white/60 backdrop-blur-sm relative overflow-hidden">
+        <!-- Decoración Institucional -->
         <div class="absolute top-0 right-0 w-1/3 h-full flex flex-col opacity-5 pointer-events-none">
             <div class="h-1/3 bg-kepler-red"></div>
             <div class="h-1/3 bg-kepler-gold"></div>
             <div class="h-1/3 bg-black"></div>
         </div>
+
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10 text-left">
             <div class="space-y-8">
                 <div class="inline-flex items-center gap-2 bg-kepler-red text-white px-5 py-2 rounded-md text-xs font-black uppercase tracking-[0.2em]">
@@ -79,6 +87,8 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
                     <button class="bg-kepler-gold text-black px-10 py-4 rounded-md font-black uppercase shadow-md hover:bg-kepler-goldDark transition-all border-b-4 border-black/10">Tel: 2255-1500</button>
                 </div>
             </div>
+
+            <!-- Tarjeta de Fachada con Imagen Optimizada -->
             <div class="relative">
                 <div class="bg-slate-300 rounded-lg overflow-hidden shadow-2xl aspect-[4/3] relative border-8 border-white">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
@@ -87,8 +97,9 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
                         <h2 class="text-3xl font-black uppercase leading-none">Colegio Johan Kepler</h2>
                         <p class="text-kepler-gold font-bold">Parvularia • Educación Básica • Bachillerato</p>
                     </div>
-                    <div class="w-full h-full bg-slate-200 flex flex-col items-center justify-center text-center">
-                        <img src="/images/fachada.jpg" alt="Fachada Colegio Kepler" class="w-full h-full object-cover" />
+
+                    <div class="w-full h-full bg-slate-200">
+                        <Image src={fachadaImg} alt="Fachada Colegio Kepler" class="w-full h-full object-cover" />
                     </div>
                 </div>
             </div>
@@ -126,7 +137,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
             <h2 class="text-4xl md:text-5xl font-black text-black uppercase tracking-tighter">Educación de Alto Impacto</h2>
             <div class="w-24 h-2 bg-kepler-gold mx-auto mb-6"></div>
             <p class="text-slate-700 font-bold text-lg max-w-2xl mx-auto mb-16 text-balance">
-                Alineados strictly con el Ministerio de Educación para garantizar el éxito en la prueba AVANZO.
+                Alineados estrictamente con el Ministerio de Educación para garantizar el éxito en la prueba AVANZO.
             </p>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="bg-white p-6 rounded-lg border-l-8 border-kepler-red shadow-sm hover:shadow-md transition-shadow">
@@ -199,7 +210,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
         <div class="space-y-6">
             <div class="flex items-center gap-4">
                 <div class="w-16 h-16 border-2 border-slate-700 rounded-full flex items-center justify-center bg-white/10 overflow-hidden">
-                    <img src="/images/logo.png" alt="Logo Kepler" class="w-full h-full object-contain" />
+                    <Image src={logoImg} alt="Logo Colegio Johan Kepler" class="w-full h-full object-contain" />
                 </div>
                 <div class="flex flex-col">
                     <span class="text-3xl font-black uppercase tracking-tighter">COLEGIO</span>
@@ -235,6 +246,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
     </div>
 </footer>
 
+<!-- Script interactivo del Menú Móvil -->
 <script>
     const t = document.getElementById("menu-btn");
     const e = document.getElementById("mobile-menu");
