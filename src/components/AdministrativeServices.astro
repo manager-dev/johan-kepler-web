@@ -1,0 +1,84 @@
+---
+// src/components/AdministrativeServices.astro
+---
+
+<section id="servicios-admin" class="py-16 bg-slate-900 text-white border-y-4 border-kepler-gold px-4 my-12">
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Encabezado de la Sección -->
+        <div class="text-center mb-12">
+      <span class="inline-flex items-center gap-2 rounded-md bg-kepler-red text-white px-3 py-1 text-xs font-black uppercase tracking-widest mb-3">
+        ● Atención al Público
+      </span>
+            <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tight text-white">
+                Servicios Administrativos
+            </h2>
+            <div class="w-20 h-1.5 bg-kepler-gold mx-auto mt-3 mb-4"></div>
+            <p class="text-slate-300 font-medium text-sm md:text-base max-w-xl mx-auto">
+                Conoce nuestros horarios de atención presencial para trámites, pagos y gestiones institucionales.
+            </p>
+        </div>
+
+        <!-- Grid de Horarios -->
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+            <!-- Recepción y Caja -->
+            <div class="bg-slate-950 p-8 rounded-lg border-l-8 border-kepler-red shadow-xl relative overflow-hidden">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="bg-kepler-red/20 text-kepler-red p-3 rounded-md">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-black uppercase text-white">Recepción y Caja</h3>
+                        <p class="text-xs text-kepler-gold font-bold uppercase tracking-wider">Pagos, Colegiaturas y Consultas</p>
+                    </div>
+                </div>
+
+                <div class="space-y-3 pt-2">
+                    <div class="flex items-center justify-between bg-slate-900 p-3 rounded border border-slate-800">
+                        <span class="text-xs font-bold uppercase text-slate-400">Días</span>
+                        <span class="text-sm font-black text-white">Lunes a Viernes</span>
+                    </div>
+                    <div class="bg-slate-900 p-3 rounded border border-slate-800 space-y-1">
+                        <span class="text-xs font-bold uppercase text-slate-400 block">Jornada Mañana</span>
+                        <span class="text-lg font-black text-kepler-gold">06:40 a.m. - 01:00 p.m.</span>
+                    </div>
+                    <div class="bg-slate-900 p-3 rounded border border-slate-800 space-y-1">
+                        <span class="text-xs font-bold uppercase text-slate-400 block">Jornada Tarde</span>
+                        <span class="text-lg font-black text-kepler-gold">02:00 p.m. - 05:00 p.m.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Área Administrativa -->
+            <div class="bg-slate-950 p-8 rounded-lg border-l-8 border-kepler-gold shadow-xl relative overflow-hidden">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="bg-kepler-gold/20 text-kepler-gold p-3 rounded-md">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-black uppercase text-white">Área Administrativa</h3>
+                        <p class="text-xs text-kepler-gold font-bold uppercase tracking-wider">Dirección y Gestión Escolar</p>
+                    </div>
+                </div>
+
+                <div class="space-y-3 pt-2">
+                    <div class="flex items-center justify-between bg-slate-900 p-3 rounded border border-slate-800">
+                        <span class="text-xs font-bold uppercase text-slate-400">Días</span>
+                        <span class="text-sm font-black text-white">Lunes a Viernes</span>
+                    </div>
+                    <div class="bg-slate-900 p-3 rounded border border-slate-800 space-y-1">
+                        <span class="text-xs font-bold uppercase text-slate-400 block">Horario Continuo</span>
+                        <span class="text-lg font-black text-kepler-gold">07:00 a.m. - 11:00 a.m.</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

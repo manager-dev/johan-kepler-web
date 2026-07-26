@@ -2,6 +2,7 @@
 // src/pages/index.astro
 import { Image } from 'astro:assets';
 import SocialCard from '../components/SocialCard.astro';
+import AdministrativeServices from '../components/AdministrativeServices.astro';
 
 // Importación directa de imágenes desde public/assets/
 import logoImg from '../../public/assets/logo.png';
@@ -38,9 +39,10 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
             </a>
 
             <!-- Menú Escritorio -->
-            <div class="hidden lg:flex items-center gap-8">
+            <div class="hidden lg:flex items-center gap-6">
                 <a href="#modelo" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Modelo Educativo</a>
                 <a href="#niveles" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Niveles</a>
+                <a href="#servicios-admin" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Servicios Admin</a>
                 <a href="#contacto" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Admisiones</a>
                 <a href="/expediente" class="border-2 border-kepler-red text-kepler-red px-4 py-2 rounded font-black uppercase text-xs hover:bg-red-50 transition-colors">Expediente</a>
             </div>
@@ -56,6 +58,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
     <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 p-6 space-y-4 shadow-lg">
         <a href="#modelo" class="block text-black font-black uppercase text-sm mobile-link">Modelo Educativo</a>
         <a href="#niveles" class="block text-black font-black uppercase text-sm mobile-link">Niveles</a>
+        <a href="#servicios-admin" class="block text-black font-black uppercase text-sm mobile-link">Servicios Admin</a>
         <a href="#contacto" class="block text-black font-black uppercase text-sm mobile-link">Admisiones</a>
         <a href="/expediente" class="block w-full text-center bg-kepler-red text-white py-3 rounded font-black uppercase">Expediente</a>
     </div>
@@ -64,7 +67,6 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
 <main>
     <!-- SECCIÓN HERO -->
     <section class="pt-32 pb-20 px-4 bg-white/60 backdrop-blur-sm relative overflow-hidden">
-        <!-- Decoración Institucional -->
         <div class="absolute top-0 right-0 w-1/3 h-full flex flex-col opacity-5 pointer-events-none">
             <div class="h-1/3 bg-kepler-red"></div>
             <div class="h-1/3 bg-kepler-gold"></div>
@@ -88,7 +90,6 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
                 </div>
             </div>
 
-            <!-- Tarjeta de Fachada con Imagen Optimizada -->
             <div class="relative">
                 <div class="bg-slate-300 rounded-lg overflow-hidden shadow-2xl aspect-[4/3] relative border-8 border-white">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
@@ -106,7 +107,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
         </div>
     </section>
 
-    <!-- HORARIOS -->
+    <!-- HORARIOS ACADÉMICOS -->
     <section class="py-12 bg-black text-white px-4 border-y-4 border-kepler-gold">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
             <div class="flex items-center gap-6">
@@ -114,7 +115,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
                 <div>
-                    <h2 class="text-3xl font-black uppercase tracking-tighter leading-none mb-1">Horario Adaptado</h2>
+                    <h2 class="text-3xl font-black uppercase tracking-tighter leading-none mb-1">Horario Académico</h2>
                     <p class="text-kepler-gold font-bold uppercase text-sm tracking-widest">Para la familia trabajadora</p>
                 </div>
             </div>
@@ -130,6 +131,9 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
             </div>
         </div>
     </section>
+
+    <!-- SECCIÓN SERVICIOS ADMINISTRATIVOS (NUEVA) -->
+    <AdministrativeServices />
 
     <!-- CURRÍCULO MINED -->
     <section id="modelo" class="py-24 px-4">
@@ -246,7 +250,6 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
     </div>
 </footer>
 
-<!-- Script interactivo del Menú Móvil -->
 <script>
     const t = document.getElementById("menu-btn");
     const e = document.getElementById("mobile-menu");
