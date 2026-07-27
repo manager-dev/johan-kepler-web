@@ -1,0 +1,140 @@
+---
+// src/pages/acerca-de-nosotros.astro
+import { Image } from 'astro:assets';
+
+// Importación de imágenes institucionales
+import logoImg from '../../public/assets/logo.png';
+import misionImg from '../../public/assets/mision.jpg';
+import visionImg from '../../public/assets/vision.jpg';
+import valoresImg from '../../public/assets/valores.jpg';
+import sloganImg from '../../public/assets/slogan.jpg';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acerca de Nosotros - Colegio Johan Kepler</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-kepler-aqua font-sans text-slate-900 antialiased min-h-screen flex flex-col justify-between">
+
+<!-- NAV -->
+<nav class="fixed w-full bg-white z-50 border-b-8 border-kepler-gold shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-24 items-center">
+            <a href="/" class="flex items-center gap-4">
+                <div class="w-14 h-14 border-2 border-slate-200 rounded-full flex items-center justify-center bg-white overflow-hidden">
+                    <Image src={logoImg} alt="Logo Colegio Johan Kepler" class="w-full h-full object-contain" />
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-black text-black leading-none uppercase tracking-tighter">Colegio</span>
+                    <span class="text-xl font-bold text-kepler-red leading-none tracking-tight">Johan Kepler</span>
+                </div>
+            </a>
+
+            <div class="hidden lg:flex items-center gap-6">
+                <a href="/" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Inicio</a>
+                <a href="/acerca-de-nosotros" class="text-kepler-red font-black uppercase text-xs tracking-widest border-b-2 border-kepler-red pb-1">Acerca de Nosotros</a>
+                <a href="/expediente" class="border-2 border-kepler-red text-kepler-red px-4 py-2 rounded font-black uppercase text-xs hover:bg-red-50 transition-colors">Expediente</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="pt-32 pb-20 px-4 max-w-7xl mx-auto w-full flex-grow space-y-16">
+
+    <!-- ENCABEZADO -->
+    <div class="text-center space-y-4">
+      <span class="inline-block bg-kepler-red text-white text-xs font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-md">
+        Nuestra Identidad Institucional
+      </span>
+        <h1 class="text-4xl md:text-6xl font-black uppercase text-black">
+            Conoce al Colegio <span class="text-kepler-red">Johan Kepler</span>
+        </h1>
+        <p class="text-slate-700 font-medium max-w-2xl mx-auto text-lg">
+            Formando líderes con valores cristianos, excelencia académica y sentido de patria en Soyapango.
+        </p>
+    </div>
+
+    <!-- BANNER SLOGAN -->
+    <div class="bg-black text-white p-8 md:p-12 rounded-xl border-y-8 border-kepler-gold shadow-2xl text-center space-y-4 relative overflow-hidden">
+        <span class="text-kepler-gold text-xs font-black uppercase tracking-[0.3em]">Slogan Institucional</span>
+        <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
+            “TU FUTURO ESTÁ EN TUS MANOS”
+        </h2>
+    </div>
+
+    <!-- GRID MISIÓN Y VISIÓN -->
+    <div class="grid md:grid-cols-2 gap-8">
+
+        <!-- MISIÓN -->
+        <div class="bg-white p-8 rounded-xl shadow-lg border-t-8 border-kepler-red flex flex-col justify-between space-y-6">
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <span class="w-3 h-8 bg-kepler-red rounded-full"></span>
+                    <h2 class="text-3xl font-black uppercase text-black">Misión</h2>
+                </div>
+                <p class="text-slate-700 leading-relaxed font-medium text-base">
+                    Somos una institución Educativa con valores cristianos, que fomentamos en nuestros educandos el desarrollo de condiciones espirituales, físicas, mentales y sociales para lograr despertar en ellos sensibilidad social, así como un pensamiento crítico y propositivo a través de docentes comprometidos con la calidad educativa, bajo un sistema multimodal.
+                </p>
+            </div>
+            <div class="rounded-lg overflow-hidden border-2 border-slate-100 shadow-sm">
+                <Image src={misionImg} alt="Misión Colegio Kepler" class="w-full h-auto object-cover" />
+            </div>
+        </div>
+
+        <!-- VISIÓN -->
+        <div class="bg-white p-8 rounded-xl shadow-lg border-t-8 border-kepler-gold flex flex-col justify-between space-y-6">
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <span class="w-3 h-8 bg-kepler-gold rounded-full"></span>
+                    <h2 class="text-3xl font-black uppercase text-black">Visión</h2>
+                </div>
+                <p class="text-slate-700 leading-relaxed font-medium text-base">
+                    Ser reconocidos como una institución educativa que promueve el amor a Dios, el respeto a la patria y a la unidad familiar; comprometidos con calidad académica y la mejora continua.
+                </p>
+            </div>
+            <div class="rounded-lg overflow-hidden border-2 border-slate-100 shadow-sm">
+                <Image src={visionImg} alt="Visión Colegio Kepler" class="w-full h-auto object-cover" />
+            </div>
+        </div>
+
+    </div>
+
+    <!-- VALORES INSTITUCIONALES -->
+    <div class="bg-white p-8 md:p-12 rounded-xl shadow-lg border-l-8 border-black grid md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-6">
+            <span class="text-kepler-red font-black text-xs uppercase tracking-widest block">Principios Fundamentales</span>
+            <h2 class="text-3xl md:text-4xl font-black uppercase text-black">Nuestros Valores</h2>
+            <ul class="space-y-4 text-lg font-bold text-slate-800">
+                <li class="flex items-center gap-3 bg-slate-50 p-3 rounded-lg border border-slate-200">
+                    <span class="text-kepler-red">✓</span> Amar a Dios
+                </li>
+                <li class="flex items-center gap-3 bg-slate-50 p-3 rounded-lg border border-slate-200">
+                    <span class="text-kepler-gold">✓</span> Respetar a la patria
+                </li>
+                <li class="flex items-center gap-3 bg-slate-50 p-3 rounded-lg border border-slate-200">
+                    <span class="text-kepler-red">✓</span> Amar al prójimo
+                </li>
+                <li class="flex items-center gap-3 bg-slate-50 p-3 rounded-lg border border-slate-200">
+                    <span class="text-black">✓</span> Honrar a la familia
+                </li>
+            </ul>
+        </div>
+        <div class="rounded-lg overflow-hidden border-2 border-slate-100 shadow-sm">
+            <Image src={valoresImg} alt="Valores Colegio Kepler" class="w-full h-auto object-cover" />
+        </div>
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-black text-white py-8 border-t-8 border-kepler-red text-center text-xs font-black uppercase tracking-widest text-slate-500">
+    © 2026 COLEGIO JOHAN KEPLER - CALIDAD INTERNACIONAL A VALOR LOCAL
+</footer>
+
+</body>
+</html>
