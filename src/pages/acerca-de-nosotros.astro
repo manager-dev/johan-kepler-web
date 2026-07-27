@@ -2,12 +2,14 @@
 // src/pages/acerca-de-nosotros.astro
 import { Image } from 'astro:assets';
 
-// Importación de imágenes desde public/assets/
-import logoImg from '../../public/assets/logo.png';
-import misionImg from '../../public/assets/ROTULO MISION CJK 2026.jpg';
-import visionImg from '../../public/assets/ROTULO VISION CJK 2026.jpg';
-import valoresImg from '../../public/assets/ROTULO VALORES CJK 2026.jpg';
-import sloganImg from '../../public/assets/SLOGAN INSTITUCIONAL CJK 2026.jpg';
+// Importación directa desde src/assets/
+import logoImg from '../assets/logo.png';
+import misionImg from '../assets/mision.jpg';
+import visionImg from '../assets/vision.jpg';
+import valoresImg from '../assets/valores.jpg';
+
+// URL Oficial de Facebook
+const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=wwXIfr";
 ---
 
 <!DOCTYPE html>
