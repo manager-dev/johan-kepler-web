@@ -18,6 +18,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Colegio Johan Kepler - Soyapango</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
 </head>
 <body class="bg-kepler-aqua font-sans text-slate-900 antialiased">
@@ -92,18 +93,29 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
                 </div>
             </div>
 
+            <!-- HERO / Tarjeta de Fachada Ajustada -->
             <div class="relative">
-                <div class="bg-slate-300 rounded-lg overflow-hidden shadow-2xl aspect-[4/3] relative border-8 border-white">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
+                <div class="bg-slate-800 rounded-lg overflow-hidden shadow-2xl aspect-[4/3] relative border-8 border-white flex items-center justify-center">
+
+                    <!-- Gradiente de lectura inferior -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 pointer-events-none"></div>
+
+                    <!-- Texto superpuesto -->
                     <div class="absolute bottom-0 left-0 w-full p-8 z-20 text-white space-y-2">
                         <div class="bg-kepler-gold text-black inline-block px-3 py-1 font-black text-xs uppercase mb-2">Polo Industrial Soyapango</div>
                         <h2 class="text-3xl font-black uppercase leading-none">Colegio Johan Kepler</h2>
                         <p class="text-kepler-gold font-bold">Parvularia • Educación Básica • Bachillerato</p>
                     </div>
 
-                    <div class="w-full h-full bg-slate-200">
-                        <Image src={fachadaImg} alt="Fachada Colegio Kepler" class="w-full h-full object-cover" />
+                    <!-- Imagen Completa Centrada (object-contain) -->
+                    <div class="w-full h-full bg-slate-800 flex items-center justify-center">
+                        <Image
+                                src={fachadaImg}
+                                alt="Fachada Colegio Kepler"
+                                class="w-full h-full object-contain object-center"
+                        />
                     </div>
+
                 </div>
             </div>
         </div>
