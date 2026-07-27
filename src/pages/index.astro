@@ -44,7 +44,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
                 <a href="#modelo" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Modelo Educativo</a>
                 <a href="#niveles" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Niveles</a>
                 <a href="#servicios-admin" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Servicios Admin</a>
-                <a href="#contacto" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Ubicación</a>
+                <a href="#ubicacion" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Ubicación</a>
                 <a href="/expediente" class="border-2 border-kepler-red text-kepler-red px-4 py-2 rounded font-black uppercase text-xs hover:bg-red-50 transition-colors">Expediente</a>
             </div>
 
@@ -61,7 +61,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
         <a href="#modelo" class="block text-black font-black uppercase text-sm mobile-link">Modelo Educativo</a>
         <a href="#niveles" class="block text-black font-black uppercase text-sm mobile-link">Niveles</a>
         <a href="#servicios-admin" class="block text-black font-black uppercase text-sm mobile-link">Servicios Admin</a>
-        <a href="#contacto" class="block text-black font-black uppercase text-sm mobile-link">Ubicación</a>
+        <a href="#ubicacion" class="block text-black font-black uppercase text-sm mobile-link">Ubicación</a>
         <a href="/expediente" class="block w-full text-center bg-kepler-red text-white py-3 rounded font-black uppercase">Expediente</a>
     </div>
 </nav>
@@ -164,8 +164,6 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
         <div class="max-w-7xl mx-auto text-center">
             <h2 class="text-4xl md:text-5xl font-black text-black uppercase tracking-tighter">Educación de Alto Impacto</h2>
             <div class="w-24 h-2 bg-kepler-gold mx-auto mb-6"></div>
-
-            <!-- CORRECCIÓN ORTOGRÁFICA: "estrictamente" en español -->
             <p class="text-slate-700 font-bold text-lg max-w-2xl mx-auto mb-16 text-balance">
                 Alineados estrictamente con el Ministerio de Educación para garantizar el éxito en la prueba AVANZO.
             </p>
@@ -236,9 +234,39 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
     <section class="max-w-7xl mx-auto px-4 py-8">
         <SocialCard facebookUrl={OFFICIAL_FACEBOOK} />
     </section>
+
+    <!-- SECCIÓN DE UBICACIÓN INTERACTIVA (DESPUÉS DE FACEBOOK Y ANTES DEL FOOTER) -->
+    <section id="ubicacion" class="max-w-7xl mx-auto px-4 py-12">
+        <div class="bg-slate-900 text-white rounded-2xl p-8 md:p-12 border-t-8 border-kepler-red shadow-2xl space-y-8">
+            <div class="text-center space-y-3">
+          <span class="bg-kepler-gold text-black text-[10px] font-black uppercase px-4 py-1 rounded tracking-widest inline-block">
+            📍 Encuéntranos Fácilmente
+          </span>
+                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight">
+                    Nuestra Ubicación
+                </h2>
+                <p class="text-slate-300 font-medium max-w-xl mx-auto text-sm md:text-base">
+                    Visítanos en el corazón de Soyapango. Estamos listos para atenderte y darte la bienvenida a la familia Kepler.
+                </p>
+            </div>
+
+            <div class="w-full h-[450px] rounded-xl overflow-hidden border-4 border-white/10 shadow-inner">
+                <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1131.9353096884083!2d-89.15353793009183!3d13.699321293731488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f633724994d8125%3A0x78e170434ebff40b!2sColegio%20Johan%20Kepler!5e0!3m2!1ses-419!2ssv!4v1785116904186!5m2!1ses-419!2ssv"
+                        width="100%"
+                        height="100%"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        title="Ubicación Colegio Johan Kepler"
+                ></iframe>
+            </div>
+        </div>
+    </section>
 </main>
 
-<!-- FOOTER INSTITUCIONAL Y MAPA DE UBICACIÓN -->
+<!-- FOOTER INSTITUCIONAL -->
 <footer id="contacto" class="bg-black text-white py-20 px-4 border-t-8 border-kepler-red">
     <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-left">
 
@@ -262,7 +290,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
         <div class="space-y-6">
             <h4 class="text-kepler-gold font-black uppercase tracking-widest text-sm">Ubicación y Admisiones</h4>
             <p class="text-slate-400 text-sm font-medium leading-relaxed">
-                Boulevar del Ejército km 4 y medio, Soyapango, San Salvador.<br />
+                Calle Principal #6, Soyapango, San Salvador.<br />
                 Cerca del centro logístico e industrial.
             </p>
             <div class="text-kepler-red font-black text-xl">TEL: 2255-1500</div>
@@ -281,24 +309,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
 
     </div>
 
-    <!-- SECCIÓN DEL MAPA (INTEGRACIÓN GOOGLE MAPS) -->
-    <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-white/10">
-        <h4 class="text-kepler-gold font-black uppercase tracking-widest text-sm mb-4 text-center">Nuestra Ubicación Geográfica</h4>
-        <div class="w-full h-[380px] rounded-xl overflow-hidden border-2 border-slate-800 shadow-2xl">
-            <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d568.2854969637843!2d-89.15301007094715!3d13.699220617020872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f63373e6fdbd525%3A0x18b70ba94f8b72f6!2sIglesia%20B%C3%ADblica%20Bautista%20Pueblo%20de%20Israel!5e0!3m2!1ses-419!2ssv!4v1778208000358!5m2!1ses-419!2ssv"
-                    width="100%"
-                    height="100%"
-                    style="border:0;"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    title="Ubicación Colegio Johan Kepler"
-            ></iframe>
-        </div>
-    </div>
-
-    <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-white/10 text-center text-[10px] font-black uppercase tracking-widest text-slate-600">
+    <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/10 text-center text-[10px] font-black uppercase tracking-widest text-slate-600">
         © 2026 COLEGIO JOHAN KEPLER - CALIDAD INTERNACIONAL A VALOR LOCAL
     </div>
 </footer>
