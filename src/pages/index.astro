@@ -3,6 +3,7 @@
 import { Image } from 'astro:assets';
 import SocialCard from '../components/SocialCard.astro';
 import AdministrativeServices from '../components/AdministrativeServices.astro';
+import VirtualTour from '../components/VirtualTour.astro';
 
 // Importación directa desde src/assets/
 import logoImg from '../assets/logo.png';
@@ -44,6 +45,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
                 <a href="/acerca-de-nosotros" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Nosotros</a>
                 <a href="#modelo" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Modelo Educativo</a>
                 <a href="#niveles" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Niveles</a>
+                <a href="#recorrido" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Recorrido</a>
                 <a href="#servicios-admin" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Servicios Admin</a>
                 <a href="#ubicacion" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Ubicación</a>
                 <a href="/expediente" class="border-2 border-kepler-red text-kepler-red px-4 py-2 rounded font-black uppercase text-xs hover:bg-red-50 transition-colors">Expediente</a>
@@ -61,6 +63,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
         <a href="/acerca-de-nosotros" class="block text-kepler-red font-black uppercase text-sm mobile-link">Nosotros</a>
         <a href="#modelo" class="block text-black font-black uppercase text-sm mobile-link">Modelo Educativo</a>
         <a href="#niveles" class="block text-black font-black uppercase text-sm mobile-link">Niveles</a>
+        <a href="#recorrido" class="block text-black font-black uppercase text-sm mobile-link">Recorrido</a>
         <a href="#servicios-admin" class="block text-black font-black uppercase text-sm mobile-link">Servicios Admin</a>
         <a href="#ubicacion" class="block text-black font-black uppercase text-sm mobile-link">Ubicación</a>
         <a href="/expediente" class="block w-full text-center bg-kepler-red text-white py-3 rounded font-black uppercase">Expediente</a>
@@ -93,21 +96,17 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
                 </div>
             </div>
 
-            <!-- HERO / Tarjeta de Fachada Ajustada -->
             <div class="relative">
                 <div class="bg-slate-800 rounded-lg overflow-hidden shadow-2xl aspect-[4/3] relative border-8 border-white flex items-center justify-center">
 
-                    <!-- Gradiente de lectura inferior -->
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 pointer-events-none"></div>
 
-                    <!-- Texto superpuesto -->
                     <div class="absolute bottom-0 left-0 w-full p-8 z-20 text-white space-y-2">
                         <div class="bg-kepler-gold text-black inline-block px-3 py-1 font-black text-xs uppercase mb-2">Polo Industrial Soyapango</div>
                         <h2 class="text-3xl font-black uppercase leading-none">Colegio Johan Kepler</h2>
                         <p class="text-kepler-gold font-bold">Parvularia • Educación Básica • Bachillerato</p>
                     </div>
 
-                    <!-- Imagen Completa Centrada (object-contain) -->
                     <div class="w-full h-full bg-slate-800 flex items-center justify-center">
                         <Image
                                 src={fachadaImg}
@@ -115,7 +114,6 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
                                 class="w-full h-full object-contain object-center"
                         />
                     </div>
-
                 </div>
             </div>
         </div>
@@ -239,6 +237,9 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
         </div>
     </section>
 
+    <!-- RECORRIDO VIRTUAL / GALERÍA DE EVENTOS -->
+    <VirtualTour />
+
     <!-- SECCIÓN SERVICIOS ADMINISTRATIVOS -->
     <AdministrativeServices />
 
@@ -247,7 +248,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
         <SocialCard facebookUrl={OFFICIAL_FACEBOOK} />
     </section>
 
-    <!-- SECCIÓN DE UBICACIÓN INTERACTIVA (DESPUÉS DE FACEBOOK Y ANTES DEL FOOTER) -->
+    <!-- SECCIÓN DE UBICACIÓN INTERACTIVA -->
     <section id="ubicacion" class="max-w-7xl mx-auto px-4 py-12">
         <div class="bg-slate-900 text-white rounded-2xl p-8 md:p-12 border-t-8 border-kepler-red shadow-2xl space-y-8">
             <div class="text-center space-y-3">
