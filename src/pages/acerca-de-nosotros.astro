@@ -2,12 +2,12 @@
 // src/pages/acerca-de-nosotros.astro
 import { Image } from 'astro:assets';
 
-// Importación de imágenes institucionales
+// Importación de imágenes desde public/assets/
 import logoImg from '../../public/assets/logo.png';
-import misionImg from '../../public/assets/mision.jpg';
-import visionImg from '../../public/assets/vision.jpg';
-import valoresImg from '../../public/assets/valores.jpg';
-import sloganImg from '../../public/assets/slogan.jpg';
+import misionImg from '../../public/assets/ROTULO MISION CJK 2026.jpg';
+import visionImg from '../../public/assets/ROTULO VISION CJK 2026.jpg';
+import valoresImg from '../../public/assets/ROTULO VALORES CJK 2026.jpg';
+import sloganImg from '../../public/assets/SLOGAN INSTITUCIONAL CJK 2026.jpg';
 ---
 
 <!DOCTYPE html>
@@ -20,12 +20,13 @@ import sloganImg from '../../public/assets/slogan.jpg';
 </head>
 <body class="bg-kepler-aqua font-sans text-slate-900 antialiased min-h-screen flex flex-col justify-between">
 
-<!-- NAV -->
+<!-- NAVEGACIÓN -->
 <nav class="fixed w-full bg-white z-50 border-b-8 border-kepler-gold shadow-xl">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-24 items-center">
+
             <a href="/" class="flex items-center gap-4">
-                <div class="w-14 h-14 border-2 border-slate-200 rounded-full flex items-center justify-center bg-white overflow-hidden">
+                <div class="w-14 h-14 md:w-16 md:h-16 border-2 border-slate-200 rounded-full flex items-center justify-center bg-white overflow-hidden">
                     <Image src={logoImg} alt="Logo Colegio Johan Kepler" class="w-full h-full object-contain" />
                 </div>
                 <div class="flex flex-col">
@@ -36,10 +37,23 @@ import sloganImg from '../../public/assets/slogan.jpg';
 
             <div class="hidden lg:flex items-center gap-6">
                 <a href="/" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Inicio</a>
-                <a href="/acerca-de-nosotros" class="text-kepler-red font-black uppercase text-xs tracking-widest border-b-2 border-kepler-red pb-1">Acerca de Nosotros</a>
+                <a href="/acerca-de-nosotros" class="text-kepler-red font-black uppercase text-xs tracking-widest border-b-2 border-kepler-red pb-1">Nosotros</a>
+                <a href="/#servicios-admin" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Servicios Admin</a>
                 <a href="/expediente" class="border-2 border-kepler-red text-kepler-red px-4 py-2 rounded font-black uppercase text-xs hover:bg-red-50 transition-colors">Expediente</a>
             </div>
+
+            <button id="menu-btn" class="lg:hidden text-black p-2 bg-slate-100 rounded" aria-label="Abrir menú">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
         </div>
+    </div>
+
+    <!-- Menú Móvil -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 p-6 space-y-4 shadow-lg">
+        <a href="/" class="block text-black font-black uppercase text-sm mobile-link">Inicio</a>
+        <a href="/acerca-de-nosotros" class="block text-kepler-red font-black uppercase text-sm mobile-link">Nosotros</a>
+        <a href="/#servicios-admin" class="block text-black font-black uppercase text-sm mobile-link">Servicios Admin</a>
+        <a href="/expediente" class="block w-full text-center bg-kepler-red text-white py-3 rounded font-black uppercase">Expediente</a>
     </div>
 </nav>
 
@@ -136,5 +150,20 @@ import sloganImg from '../../public/assets/slogan.jpg';
     © 2026 COLEGIO JOHAN KEPLER - CALIDAD INTERNACIONAL A VALOR LOCAL
 </footer>
 
+<script>
+    const t = document.getElementById("menu-btn");
+    const e = document.getElementById("mobile-menu");
+    const d = document.querySelectorAll(".mobile-link");
+
+    t?.addEventListener("click", () => {
+        e?.classList.toggle("hidden");
+    });
+
+    d.forEach(n => {
+        n.addEventListener("click", () => {
+            e?.classList.add("hidden");
+        });
+    });
+</script>
 </body>
 </html>
