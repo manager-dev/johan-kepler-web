@@ -44,7 +44,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
                 <a href="#modelo" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Modelo Educativo</a>
                 <a href="#niveles" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Niveles</a>
                 <a href="#servicios-admin" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Servicios Admin</a>
-                <a href="#contacto" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Admisiones</a>
+                <a href="#contacto" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Ubicación</a>
                 <a href="/expediente" class="border-2 border-kepler-red text-kepler-red px-4 py-2 rounded font-black uppercase text-xs hover:bg-red-50 transition-colors">Expediente</a>
             </div>
 
@@ -61,7 +61,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
         <a href="#modelo" class="block text-black font-black uppercase text-sm mobile-link">Modelo Educativo</a>
         <a href="#niveles" class="block text-black font-black uppercase text-sm mobile-link">Niveles</a>
         <a href="#servicios-admin" class="block text-black font-black uppercase text-sm mobile-link">Servicios Admin</a>
-        <a href="#contacto" class="block text-black font-black uppercase text-sm mobile-link">Admisiones</a>
+        <a href="#contacto" class="block text-black font-black uppercase text-sm mobile-link">Ubicación</a>
         <a href="/expediente" class="block w-full text-center bg-kepler-red text-white py-3 rounded font-black uppercase">Expediente</a>
     </div>
 </nav>
@@ -164,9 +164,12 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
         <div class="max-w-7xl mx-auto text-center">
             <h2 class="text-4xl md:text-5xl font-black text-black uppercase tracking-tighter">Educación de Alto Impacto</h2>
             <div class="w-24 h-2 bg-kepler-gold mx-auto mb-6"></div>
+
+            <!-- CORRECCIÓN ORTOGRÁFICA: "estrictamente" en español -->
             <p class="text-slate-700 font-bold text-lg max-w-2xl mx-auto mb-16 text-balance">
-                Alineados strictly con el Ministerio de Educación para garantizar el éxito en la prueba AVANZO.
+                Alineados estrictamente con el Ministerio de Educación para garantizar el éxito en la prueba AVANZO.
             </p>
+
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="bg-white p-6 rounded-lg border-l-8 border-kepler-red shadow-sm hover:shadow-md transition-shadow">
                     <h3 class="text-xl font-black text-slate-900 mb-2">ESMATE</h3>
@@ -226,7 +229,7 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
         </div>
     </section>
 
-    <!-- SECCIÓN SERVICIOS ADMINISTRATIVOS (UBICADA JUSTO ARRIBA DE FACEBOOK) -->
+    <!-- SECCIÓN SERVICIOS ADMINISTRATIVOS -->
     <AdministrativeServices />
 
     <!-- TARJETA COMUNIDAD DIGITAL (FACEBOOK) -->
@@ -235,9 +238,11 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
     </section>
 </main>
 
-<!-- FOOTER INSTITUCIONAL -->
+<!-- FOOTER INSTITUCIONAL Y MAPA DE UBICACIÓN -->
 <footer id="contacto" class="bg-black text-white py-20 px-4 border-t-8 border-kepler-red">
     <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-left">
+
+        <!-- Identidad -->
         <div class="space-y-6">
             <div class="flex items-center gap-4">
                 <div class="w-16 h-16 border-2 border-slate-700 rounded-full flex items-center justify-center bg-white/10 overflow-hidden">
@@ -253,15 +258,17 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
             </p>
         </div>
 
+        <!-- Ubicación y Admisiones -->
         <div class="space-y-6">
             <h4 class="text-kepler-gold font-black uppercase tracking-widest text-sm">Ubicación y Admisiones</h4>
             <p class="text-slate-400 text-sm font-medium leading-relaxed">
-                Calle Principal #6, Soyapango, San Salvador.<br />
+                Boulevar del Ejército km 4 y medio, Soyapango, San Salvador.<br />
                 Cerca del centro logístico e industrial.
             </p>
             <div class="text-kepler-red font-black text-xl">TEL: 2255-1500</div>
         </div>
 
+        <!-- Marco Normativo -->
         <div class="space-y-6">
             <h4 class="text-kepler-gold font-black uppercase tracking-widest text-sm">Marco Normativo y Enlaces</h4>
             <ul class="text-slate-400 text-sm font-bold uppercase space-y-2">
@@ -271,9 +278,27 @@ const OFFICIAL_FACEBOOK = "https://www.facebook.com/share/1DzYBSxGJ1/?mibextid=w
                 <li>• Ley Crecer Juntos</li>
             </ul>
         </div>
+
     </div>
 
-    <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/10 text-center text-[10px] font-black uppercase tracking-widest text-slate-600">
+    <!-- SECCIÓN DEL MAPA (INTEGRACIÓN GOOGLE MAPS) -->
+    <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-white/10">
+        <h4 class="text-kepler-gold font-black uppercase tracking-widest text-sm mb-4 text-center">Nuestra Ubicación Geográfica</h4>
+        <div class="w-full h-[380px] rounded-xl overflow-hidden border-2 border-slate-800 shadow-2xl">
+            <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d568.2854969637843!2d-89.15301007094715!3d13.699220617020872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f63373e6fdbd525%3A0x18b70ba94f8b72f6!2sIglesia%20B%C3%ADblica%20Bautista%20Pueblo%20de%20Israel!5e0!3m2!1ses-419!2ssv!4v1778208000358!5m2!1ses-419!2ssv"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Ubicación Colegio Johan Kepler"
+            ></iframe>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-white/10 text-center text-[10px] font-black uppercase tracking-widest text-slate-600">
         © 2026 COLEGIO JOHAN KEPLER - CALIDAD INTERNACIONAL A VALOR LOCAL
     </div>
 </footer>
