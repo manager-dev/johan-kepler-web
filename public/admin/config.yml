@@ -1,0 +1,28 @@
+backend:
+  name: github
+  repo: manager-dev/johan-kepler-web # Reemplazar con repo real
+  branch: main                       # Opera únicamente sobre la rama de Producción
+
+media_folder: "src/assets/noticias"
+public_folder: "../../assets/noticias"
+
+collections:
+  - name: "noticias"
+    label: "Boletín y Avisos"
+    folder: "src/content/noticias"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Título de la Noticia", name: "title", widget: "string" }
+      - { label: "Fecha", name: "date", widget: "datetime" }
+      - {
+        label: "Categoría",
+        name: "category",
+        widget: "select",
+        options: ["Aviso Importante", "Académico", "Feria de Logros", "Deportes", "Comunidad"]
+      }
+      - { label: "Aviso Urgente (Franja Superior)", name: "urgent", widget: "boolean", default: false }
+      - { label: "Imagen Destacada", name: "image", widget: "image", required: false }
+      - { label: "Resumen Corto", name: "summary", widget: "text" }
+      - { label: "Contenido Completo", name: "body", widget: "markdown" }

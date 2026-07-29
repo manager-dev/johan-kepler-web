@@ -1,0 +1,35 @@
+---
+// src/components/NewsTicker.astro
+import { getCollection } from 'astro:content';
+
+// Obtener todas las noticias y filtrar la más reciente que sea urgente
+const noticias = await getCollection('noticias');
+const avisoUrgente = noticias
+    .filter(n => n.data.urgent)
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())[0];
+---
+
+{avisoUrgente && (
+<div class="bg-kepler-red text-white py-2.5 px-4 relative z-20 shadow-md border-b-2 border-kepler-gold">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3 overflow-hidden">
+        <span class="flex h-2.5 w-2.5 relative shrink-0">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-kepler-gold"></span>
+        </span>
+            <span class="bg-black/30 text-kepler-gold text-[10px] font-black uppercase px-2 py-0.5 rounded shrink-0">
+          {avisoUrgente.data.category}
+        </span>
+            <p class="text-xs md:text-sm font-bold truncate">
+                {avisoUrgente.data.title} — <span class="font-normal opacity-90 hidden sm:inline">{avisoUrgente.data.summary}</span>
+            </p>
+        </div>
+        <a
+                href="#noticias"
+                class="text-[10px] font-black uppercase bg-white text-kepler-red px-3 py-1 rounded hover:bg-kepler-gold hover:text-black transition-colors shrink-0"
+        >
+            Ver Detalle
+        </a>
+    </div>
+</div>
+    )}
