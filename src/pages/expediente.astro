@@ -1,34 +1,113 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ExpedienteDashboard from '../components/ExpedienteDashboard.jsx';
+// src/pages/expediente.astro
+import { Image } from 'astro:assets';
+
+// Importación directa del logo desde src/assets/
+import logoImg from '../assets/logo.png';
 ---
 
-<Layout title="Expediente Kepler - Control Académico Digital">
-    {/* Barra superior de navegación del módulo */}
-    <header class="bg-white border-b-8 border-kepler-gold shadow-md py-6 px-4 fixed w-full z-50">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10">
-                    <img src="/assets/logo.png" alt="Logo Kepler" class="w-full h-full object-contain" />
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consulta de Expediente - Colegio Johan Kepler</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-kepler-aqua font-sans text-slate-900 antialiased min-h-screen flex flex-col justify-between">
+
+<!-- NAV -->
+<nav class="fixed w-full bg-white z-50 border-b-8 border-kepler-gold shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-24 items-center">
+
+            <a href="/" class="flex items-center gap-4">
+                <div class="w-14 h-14 md:w-16 md:h-16 border-2 border-slate-200 rounded-full flex items-center justify-center bg-white overflow-hidden">
+                    <Image src={logoImg} alt="Logo Colegio Johan Kepler" class="w-full h-full object-contain" />
                 </div>
-                <div class="flex flex-col text-left">
-                    <span class="text-lg font-black text-black leading-none uppercase tracking-tighter">Expediente</span>
-                    <span class="text-xs font-bold text-kepler-red leading-none tracking-tight uppercase">Johan Kepler</span>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-black text-black leading-none uppercase tracking-tighter">Colegio</span>
+                    <span class="text-xl font-bold text-kepler-red leading-none tracking-tight">Johan Kepler</span>
                 </div>
-            </div>
-            <a href="/" class="border-2 border-black text-black px-4 py-2 rounded font-black uppercase text-xs hover:bg-slate-50 transition-colors">
-                🡨 Volver al Inicio
             </a>
-        </div>
-    </header>
 
-    <main class="pt-32 pb-20 px-4 max-w-7xl mx-auto text-center">
-        <div class="mb-12">
-            <h1 class="text-4xl md:text-5xl font-black text-black uppercase tracking-tighter">Portal de Información Estudiantil</h1>
-            <div class="w-16 h-2 bg-kepler-gold mx-auto mt-2"></div>
+            <div class="hidden lg:flex items-center gap-6">
+                <a href="/" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Inicio</a>
+                <a href="/acerca-de-nosotros" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Nosotros</a>
+                <a href="/#servicios-admin" class="text-black hover:text-kepler-red font-black uppercase text-xs tracking-widest transition-colors">Servicios Admin</a>
+                <a href="/expediente" class="border-2 border-kepler-red bg-kepler-red text-white px-4 py-2 rounded font-black uppercase text-xs shadow-md">Expediente</a>
+            </div>
+
+            <button id="menu-btn" class="lg:hidden text-black p-2 bg-slate-100 rounded" aria-label="Abrir menú">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Menú Móvil -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 p-6 space-y-4 shadow-lg">
+        <a href="/" class="block text-black font-black uppercase text-sm mobile-link">Inicio</a>
+        <a href="/acerca-de-nosotros" class="block text-black font-black uppercase text-sm mobile-link">Nosotros</a>
+        <a href="/#servicios-admin" class="block text-black font-black uppercase text-sm mobile-link">Servicios Admin</a>
+        <a href="/expediente" class="block w-full text-center bg-kepler-red text-white py-3 rounded font-black uppercase">Expediente</a>
+    </div>
+</nav>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="pt-36 pb-20 px-4 max-w-4xl mx-auto w-full flex-grow">
+    <div class="bg-white rounded-2xl shadow-2xl border-t-8 border-kepler-red p-8 md:p-12 text-center space-y-6">
+
+        <div class="w-20 h-20 bg-red-50 border-2 border-kepler-red rounded-full flex items-center justify-center mx-auto text-kepler-red">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
         </div>
 
-        {/* Inyección del Dashboard con hidratación del lado del cliente */}
-        <ExpedienteDashboard client:only="solid-js" />
-    </main>
-</Layout>
+        <h1 class="text-3xl md:text-4xl font-black uppercase text-black tracking-tight">
+            Consulta de Expediente Académico
+        </h1>
+
+        <p class="text-slate-600 font-medium max-w-lg mx-auto text-sm md:text-base">
+            Ingresa el Carné o NIE del estudiante para acceder al historial académico, notas y estado de cuenta.
+        </p>
+
+        <form class="max-w-md mx-auto space-y-4 pt-4">
+            <div class="relative">
+                <input
+                        type="text"
+                        placeholder="Ej: KP-2026-001"
+                        class="w-full px-5 py-4 rounded-xl border-2 border-slate-300 font-bold text-slate-800 placeholder-slate-400 focus:border-kepler-red focus:outline-none transition-colors text-center uppercase tracking-wider text-lg"
+                />
+            </div>
+            <button
+                    type="submit"
+                    class="w-full bg-kepler-red hover:bg-red-700 text-white font-black uppercase py-4 rounded-xl shadow-lg transition-all border-b-4 border-black/20 text-sm tracking-wider"
+            >
+                Consultar Expediente
+            </button>
+        </form>
+
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-black text-white py-8 border-t-8 border-kepler-red text-center text-xs font-black uppercase tracking-widest text-slate-500">
+    © 2026 COLEGIO JOHAN KEPLER - CALIDAD INTERNACIONAL A VALOR LOCAL
+</footer>
+
+<script>
+    const t = document.getElementById("menu-btn");
+    const e = document.getElementById("mobile-menu");
+    const d = document.querySelectorAll(".mobile-link");
+
+    t?.addEventListener("click", () => {
+        e?.classList.toggle("hidden");
+    });
+
+    d.forEach(n => {
+        n.addEventListener("click", () => {
+            e?.classList.add("hidden");
+        });
+    });
+</script>
+</body>
+</html>
