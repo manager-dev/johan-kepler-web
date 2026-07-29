@@ -1,0 +1,74 @@
+---
+// src/components/NewsSection.astro
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+
+// Obtener las últimas 3 noticias ordenadas por fecha
+const noticias = (await getCollection('noticias'))
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+    .slice(0, 3);
+---
+
+{noticias.length > 0 && (
+<section id="noticias" class="max-w-7xl mx-auto px-4 py-12">
+    <div class="space-y-8">
+
+        <!-- Encabezado de la Sección -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b-4 border-kepler-gold pb-4">
+            <div>
+          <span class="bg-slate-900 text-kepler-gold text-[10px] font-black uppercase px-3 py-1 rounded tracking-widest inline-block mb-2">
+            ● Comunicados Oficiales
+          </span>
+                <h2 class="text-3xl md:text-4xl font-black uppercase text-black">
+                    Boletín Informativo
+                </h2>
+            </div>
+            <p class="text-slate-600 font-medium text-sm max-w-md">
+                Mantente al día con los avisos, eventos y actividades de la comunidad escolar del Colegio Johan Kepler.
+            </p>
+        </div>
+
+        <!-- Grid de Noticias -->
+        <div class="grid md:grid-cols-3 gap-8">
+            {noticias.map((item) => (
+                    <article class="bg-white rounded-xl shadow-lg border-2 border-slate-100 overflow-hidden flex flex-col justify-between hover:shadow-xl transition-shadow">
+                        <div>
+                            {item.data.image && (
+                                    <div class="aspect-video w-full overflow-hidden bg-slate-900">
+                                        <Image
+                                                src={item.data.image}
+                                                alt={item.data.title}
+                                                class="w-full h-full object-cover"
+                                        />
+                                    </div>
+                            )}
+                            <div class="p-6 space-y-3">
+                                <div class="flex items-center justify-between text-xs font-bold text-slate-500">
+                  <span class="bg-kepler-red/10 text-kepler-red px-2.5 py-0.5 rounded-full font-black uppercase text-[10px]">
+                    {item.data.category}
+                  </span>
+                                    <time datetime={item.data.date.toISOString()}>
+                                        {item.data.date.toLocaleDateString('es-SV', { year: 'numeric', month: 'short', day: 'numeric' })}
+                                    </time>
+                                </div>
+                                <h3 class="text-xl font-black text-black leading-snug hover:text-kepler-red transition-colors">
+                                    {item.data.title}
+                                </h3>
+                                <p class="text-slate-600 text-sm font-medium line-clamp-3 leading-relaxed">
+                                    {item.data.summary}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="px-6 pb-6 pt-2">
+              <span class="text-xs font-black text-kepler-red uppercase tracking-wider inline-flex items-center gap-1">
+                Leer comunicado completo →
+              </span>
+                        </div>
+                    </article>
+            ))}
+        </div>
+
+    </div>
+</section>
+    )}
