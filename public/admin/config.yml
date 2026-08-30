@@ -1,10 +1,15 @@
+local_backend: true
+
 backend:
   name: github
-  repo: manager-dev/johan-kepler-web # Reemplazar con repo real
-  branch: main                       # Opera únicamente sobre la rama de Producción
+  repo: manager-dev/johan-kepler-web
+  branch: main
 
-media_folder: "src/assets/noticias"
-public_folder: "../../assets/noticias"
+# Guardar imágenes en public/ para servirlas directamente
+media_folder: "public/images/noticias"
+public_folder: "/images/noticias"
+
+locale: "es"
 
 collections:
   - name: "noticias"
@@ -13,16 +18,26 @@ collections:
     create: true
     delete: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: "frontmatter"
+    editor:
+      preview: true
     fields:
       - { label: "Título de la Noticia", name: "title", widget: "string" }
-      - { label: "Fecha", name: "date", widget: "datetime" }
+      - {
+        label: "Fecha",
+        name: "date",
+        widget: "datetime",
+        format: "YYYY-MM-DDTHH:mm:ssZ",
+        date_format: "YYYY-MM-DD",
+        time_format: "HH:mm"
+      }
       - {
         label: "Categoría",
         name: "category",
         widget: "select",
         options: ["Aviso Importante", "Académico", "Feria de Logros", "Deportes", "Comunidad"]
       }
-      - { label: "Aviso Urgente (Franja Superior)", name: "urgent", widget: "boolean", default: false }
+      - { label: "Aviso Urgente (Franja Superior)", name: "urgent", widget: "boolean", default: false, required: false }
       - { label: "Imagen Destacada", name: "image", widget: "image", required: false }
       - { label: "Resumen Corto", name: "summary", widget: "text" }
       - { label: "Contenido Completo", name: "body", widget: "markdown" }

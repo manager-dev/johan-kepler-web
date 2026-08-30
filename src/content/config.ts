@@ -1,18 +1,18 @@
-// src/content/config.ts
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const noticiasCollection = defineCollection({
-    type: 'content',
-    schema: ({ image }) => z.object({
-        title: z.string(),
-        date: z.date(),
-        category: z.enum(["Aviso Importante", "Académico", "Feria de Logros", "Deportes", "Comunidad"]),
-        urgent: z.boolean().default(false),
-        image: image().optional(),
-        summary: z.string(),
-    }),
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    category: z.string(),
+    urgent: z.boolean().default(false),
+    // Usar z.string() para rutas estáticas de public/
+    image: z.string().optional(),
+    summary: z.string().optional(),
+  }),
 });
 
 export const collections = {
-    'noticias': noticiasCollection,
+  noticias: noticiasCollection,
 };
