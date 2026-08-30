@@ -1,43 +1,33 @@
-local_backend: true
-
 backend:
   name: github
   repo: manager-dev/johan-kepler-web
-  branch: main
+  branch: develop
+  base_url: https://auth-cms.portalweb.cc
+  auth_endpoint: auth
 
-# Guardar imágenes en public/ para servirlas directamente
+# Comentar o eliminar local_backend para entorno remoto
+# local_backend: true
+
 media_folder: "public/images/noticias"
 public_folder: "/images/noticias"
-
-locale: "es"
 
 collections:
   - name: "noticias"
     label: "Boletín y Avisos"
     folder: "src/content/noticias"
     create: true
-    delete: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    format: "frontmatter"
-    editor:
-      preview: true
     fields:
-      - { label: "Título de la Noticia", name: "title", widget: "string" }
-      - {
-        label: "Fecha",
-        name: "date",
-        widget: "datetime",
-        format: "YYYY-MM-DDTHH:mm:ssZ",
-        date_format: "YYYY-MM-DD",
-        time_format: "HH:mm"
-      }
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Fecha", name: "date", widget: "datetime" }
       - {
         label: "Categoría",
         name: "category",
         widget: "select",
-        options: ["Aviso Importante", "Académico", "Feria de Logros", "Deportes", "Comunidad"]
+        options: ["Aviso Importante", "Académico", "Feria de Logros", "Deportes", "Comunidad", "Pastoral"],
+        default: "Comunidad"
       }
       - { label: "Aviso Urgente (Franja Superior)", name: "urgent", widget: "boolean", default: false, required: false }
       - { label: "Imagen Destacada", name: "image", widget: "image", required: false }
-      - { label: "Resumen Corto", name: "summary", widget: "text" }
-      - { label: "Contenido Completo", name: "body", widget: "markdown" }
+      - { label: "Resumen Corto", name: "summary", widget: "string", required: false }
+      - { label: "Cuerpo de la Noticia", name: "body", widget: "markdown" }
