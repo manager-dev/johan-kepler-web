@@ -1,0 +1,11 @@
+# Dependencias y compilaciones
+node_modules/
+dist/
+.astro/
+
+# Control de versiones y entorno
+.git/
+.env*
+
+# Archivos estáticos o de administración
+public/admin/
